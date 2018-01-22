@@ -1,0 +1,254 @@
+				
+				DATABASE ALL COMMAND
+----------------------------------------------------------------------------------------------------------------------------------------
+
+Part - 1
+-------------------
+
+1.	 CREATE DATABASE testDB;
+2. 	DROP DATABASE testDB;
+
+3. 	CREATE TABLE Persons (
+    	        PersonID int,
+    	        LastName varchar(255),
+    	        FirstName varchar(255),
+    	        Address varchar(255),
+    	        City varchar(255) 
+	);
+
+4.    Copy data from old table to new table.
+
+	i.   CREATE TABLE new_table
+  	     AS (SELECT * FROM old_table);
+
+	ii.  SELECT * INTO CustomersBackup2017
+	     FROM Customers;
+
+
+5. 	DROP TABLE Shippers;
+	
+	The TRUNCATE TABLE statement is used to delete the data inside a table, but not the table itself.	
+
+	       TRUNCATE TABLE table_name;
+
+6. 	To add a column in a table, use the following syntax:
+
+	ALTER TABLE table_name
+	ADD column_name datatype;
+
+
+7.	To delete a column in a table, use the following syntax (notice that some database systems don't allow deleting a column):
+
+	ALTER TABLE table_name
+	DROP COLUMN column_name;
+
+
+
+
+
+
+
+
+
+
+
+
+part-2
+--------------------
+
+1. 	SELECT * FROM 
+	Customers; 
+
+2. 	SELECT CustomerName, City 
+	FROM Customers; 
+
+3. 	SELECT DISTINCT Country 
+	FROM Customers; 
+
+4.	SELECT COUNT(DISTINCT Country)
+	FROM Customers; 
+
+5.	SELECT Count(*) AS DistinctCountries 
+	FROM (SELECT DISTINCT Country FROM Customers); 
+
+6.             SELECT * FROM Customers 
+	WHERE Country='Mexico'; 
+
+7.	SELECT * FROM Customers 
+	WHERE Country='Germany' AND (City='Berlin' OR City='München');
+
+9. 	SELECT * FROM Customers 
+	WHERE NOT Country='Germany' AND NOT Country='USA';
+
+10. 	SELECT * FROM Customers 
+	ORDER BY Country;
+
+11.  	SELECT * FROM Customers 
+	ORDER BY Country DESC;
+
+12. 	 SELECT * FROM Customers 
+	ORDER BY Country, CustomerName;
+
+13. 	 SELECT * FROM Customers 
+	ORDER BY Country ASC, CustomerName DESC;
+
+14.  INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+           VALUES ('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway');
+
+15. It is also possible to only insert data in specific columns.
+
+	INSERT INTO Customers (CustomerName, City, Country) VALUES ('Cardinal', 'Stavanger', 'Norway');
+
+     After inserting it looks like:  92	Cardinal	null	null 	Stavanger	null	Norway
+
+Demo:
+-----------
+ID	LastName	FirstName	Address		     	City
+1	Doe		John		542 W. 27th Street	           New York
+2	Bloggs		Joe	 			           London
+3	Roe		Jane	 			           New York
+4	Smith		John		110 Bishopsgate	           London
+
+16. SELECT LastName, FirstName, Address FROM Persons WHERE Address IS NULL;          (It shows 2,3)
+
+17. SELECT LastName, FirstName, Address FROM Persons WHERE Address IS NOT NULL;   (it show s 1,4)
+
+
+18. (specific update! Depend on situation)
+	UPDATE Customers 
+	SET ContactName = 'Alfred Schmidt', City= 'Frankfurt' 
+	WHERE CustomerID = 1;
+
+19. (multiple update! Depend on situation)
+	UPDATE Customers 
+	SET ContactName='Juan'
+	WHERE Country='Mexico';
+
+20.  Update Warning!
+Be careful when updating records. If you omit the WHERE clause, ALL records will be updated!
+
+	UPDATE Customers
+	SET ContactName='Juan';
+
+21. 	DELETE FROM Customers	
+	WHERE CustomerName='Alfreds Futterkiste';
+
+22. Delete All Records
+	DELETE FROM table_name;
+	DELETE * FROM table_name;
+
+
+23. 	SELECT TOP 3 * FROM Customers;
+	SELECT * FROM Customers LIMIT 3;	--------------------------- (mysql / postgresql)
+	SELECT * FROM Customers WHERE ROWNUM <= 3;  --------(Oracle)
+	SELECT TOP 50 PERCENT * FROM Customers;
+
+24. SELECT TOP 3 * FROM Customers
+ WHERE Country='Germany';
+
+25. SELECT * FROM Customers
+WHERE Country='Germany'
+LIMIT 3;
+
+
+26.    SELECT * FROM Customers
+         WHERE Country='Germany' 
+         AND ROWNUM <= 3;
+
+
+27.  SELECT MIN(Price) AS SmallestPrice FROM Products;
+       Another way:
+	 SELECT MIN(Price)  FROM Products;
+
+
+27.  SELECT MAX(Price) AS SmallestPrice FROM Products;
+       Another way:
+	 SELECT MAX(Price)  FROM Products;
+
+28. COUNT() Syntax
+	SELECT COUNT(column_name)
+	FROM table_name
+	WHERE condition;
+29. AVG() Syntax
+	SELECT AVG(column_name)
+	FROM table_name
+	WHERE condition;
+30. SUM() Syntax
+	SELECT SUM(column_name)
+	FROM table_name
+	WHERE condition;
+
+31. 	SELECT COUNT(ProductID)
+	FROM Products;
+
+32. 	SELECT AVG(Price)
+	FROM Products;
+
+33. 	SELECT SUM(Quantity)
+	FROM OrderDetails;
+	
+34.    The SQL LIKE Operator
+	The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+
+	There are two wildcards used in conjunction with the LIKE operator:
+
+	%     The percent sign represents zero, one, or multiple characters
+	_      The underscore represents a single character
+
+35.           WHERE CustomerName LIKE 'a%'	Finds any values that starts with "a"
+	WHERE CustomerName LIKE '%a'	Finds any values that ends with "a"
+	WHERE CustomerName LIKE '%or%'	Finds any values that have "or" in any position
+	WHERE CustomerName LIKE '_r%'	Finds any values that have "r" in the second position
+	WHERE CustomerName LIKE 'a_%_%'	Finds any values that starts with "a" and are at least 3 characters in length
+	WHERE ContactName LIKE 'a%o'	Finds any values that starts with "a" and ends with "o"
+
+
+35.           i.     The following SQL statement selects all customers with a CustomerName starting with "a":
+		SELECT * FROM Customers
+		WHERE CustomerName LIKE 'a%';
+
+	ii.     The following SQL statement selects all customers with a CustomerName that have "or" in any position:
+		SELECT * FROM Customers
+		WHERE CustomerName LIKE '%or%';
+
+	iii.    The following SQL statement selects all customers with a CustomerName that have "r" in the second position:
+		SELECT * FROM Customers
+		WHERE CustomerName LIKE '_r%';
+
+	iv.    The following SQL statement selects all customers with a CustomerName that starts with "a" and are
+	        at least 3 characters in length:
+		SELECT * FROM Customers
+		WHERE CustomerName LIKE 'a_%_%';		
+	
+	v.     The following SQL statement selects all customers with a ContactName that starts with "a" and ends with "o":
+		SELECT * FROM Customers
+		WHERE ContactName LIKE 'a%o';	
+
+	vi.    The following SQL statement selects all customers with a CustomerName that does NOT start with "a":
+		SELECT * FROM Customers
+		WHERE CustomerName NOT LIKE 'a%';
+
+
+36.	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
