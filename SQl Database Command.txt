@@ -1,6 +1,11 @@
 				
+<<<<<<< HEAD
 				DATABASE ALL COMMAND !!
 ----------------------------------------------------------------------------------------------------------------------------------------
+=======
+				!!  DATABASE ALL COMMAND  !!
+----------------------------------------------------------------------------------------------------------------------------
+>>>>>>> e51f4bfc3f19302cfc36cbd315461dacfd606ae4
 
 Part - 1
 -------------------
@@ -75,7 +80,7 @@ part-2
 	WHERE Country='Mexico'; 
 
 7.	SELECT * FROM Customers 
-	WHERE Country='Germany' AND (City='Berlin' OR City='München');
+	WHERE Country='Germany' AND (City='Berlin' OR City='MÃ¼nchen');
 
 9. 	SELECT * FROM Customers 
 	WHERE NOT Country='Germany' AND NOT Country='USA';
