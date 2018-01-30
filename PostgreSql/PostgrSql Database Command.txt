@@ -1,0 +1,119 @@
+
+
+	\l = show total database
+	\c test; connect test dtabase;
+	\q for exit;
+	\d check exits how many elements
+	
+	
+	
+   1.	CREATE TABLE COMPANY	(
+  		 ID	        INT    	PRIMARY KEY      NOT NULL,
+ 		  NAME            TEXT    		            NOT NULL,
+  		 AGE                 INT    	                            NOT NULL,
+  		 ADDRESS        CHAR(50),
+  		 SALARY           REAL
+		JOIN_DATE       DATE
+	);
+	
+    2.	drop table  company;
+
+
+   3.         create schema myschema;
+
+   4.         create table myschema.company(
+ 		  ID               INT                       NOT NULL,
+   		  NAME         VARCHAR (20)     NOT NULL,
+   		 AGE             INT                       NOT NULL,
+ 		 ADDRESS     CHAR (25),
+  		 SALARY        DECIMAL (18, 2),
+  		 PRIMARY KEY (ID)
+	);
+
+  5.	DROP SCHEMA myschema;
+
+
+  6.        DROP TABLE IF EXISTS company;
+
+
+ 7. 	DROP SCHEMA myschema CASCADE;
+
+  8. 	INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY,JOIN_DATE) VALUES (1, 'Paul', 32, 'California', 20000.00,'2001-07-13');
+
+
+			ID        NAME        AGE        ADDRESS     SALARY	  JOIN_DATE
+			----      ----------     -----         -------------     ---------     ---------------
+			1         Paul           32         California       20000.0      2001-07-13
+			4         Mark          25         Rich-Mond     65000.0      2007-12-13
+			5         David         27         Texas             85000.0      2007-12-13
+
+
+ 9. 	SELECT * FROM COMPANY WHERE SALARY = 10000;
+
+10. 	SELECT (15 + 6) AS ADDITION ;
+
+11.	SELECT COUNT(*) AS "RECORDS" FROM COMPANY;
+
+12.	SELECT CURRENT_TIMESTAMP;
+
+13.	SELECT AVG(salary) AS Avarage FROM COMPANY;
+
+14.	SELECT sum(salary) AS SUM FROM COMPANY;
+
+15.           SELECT MAX(salary) AS Max FROM COMPANY; 
+
+16.	SELECT MIN(salary) AS MIN FROM COMPANY;
+
+17.	SELECT * FROM COMPANY WHERE AGE >= 25 AND SALARY >= 65000;
+
+18.	SELECT * FROM COMPANY WHERE AGE >= 25 OR SALARY >= 65000;
+
+19.	SELECT * FROM COMPANY WHERE AGE IS NOT NULL;
+
+20.	SELECT * FROM COMPANY WHERE NAME LIKE 'Pa%';
+
+21.	SELECT * FROM COMPANY WHERE AGE IN ( 25, 27 );
+
+22.	SELECT * FROM COMPANY WHERE AGE NOT IN ( 25, 27 );
+
+23.	SELECT * FROM COMPANY WHERE AGE BETWEEN 25 AND 27;
+
+24.	 SELECT AGE FROM COMPANY WHERE EXISTS (SELECT AGE FROM COMPANY WHERE SALARY > 65000);
+
+25.	SELECT * FROM COMPANY WHERE AGE < (SELECT AGE FROM COMPANY WHERE SALARY <65000);
+
+26.	UPDATE COMPANY SET SALARY = 15000 WHERE ID = 3;
+
+27.          UPDATE COMPANY SET ADDRESS = 'Texas', SALARY=20000; (it update all address and salary)
+
+28. 	DELETE FROM COMPANY WHERE ID = 2;
+
+29.	LIKE Operation ( https://www.tutorialspoint.com/postgresql/postgresql_like_clause.htm )
+
+30.	Postgres LIKE is String compare only. Hence, we need to explicitly cast the integer column to string as in the examples above.
+		SELECT * FROM COMPANY WHERE AGE::text LIKE '2%';
+
+31.	SELECT * FROM COMPANY LIMIT 4;
+
+32.	SELECT * FROM COMPANY LIMIT 3 OFFSET 2;
+
+33.	SELECT * FROM COMPANY ORDER BY AGE ASC;
+
+34.	SELECT * FROM COMPANY ORDER BY NAME, SALARY ASC; 	(importance at first name pabe then salary)
+
+35.	SELECT * FROM COMPANY ORDER BY NAME DESC;
+
+36.	SELECT NAME, SUM(SALARY) FROM COMPANY GROUP BY NAME;
+
+37.	 SELECT NAME, SUM(SALARY) FROM COMPANY GROUP BY NAME ORDER BY NAME;
+
+38.	About more info of group by (https://www.tutorialspoint.com/postgresql/postgresql_group_by.htm)
+
+39.	
+
+
+
+
+
+
+	
