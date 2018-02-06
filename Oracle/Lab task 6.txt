@@ -1,0 +1,56 @@
+	
+	CREATE TABLE emp1 (
+    	        person_name varchar(25),
+    	        street varchar(25),
+    	        City varchar(25) 
+	);
+
+	CREATE TABLE emp2 (
+    	        person_name varchar(25),
+    	        company varchar(25),
+    	        salary int 
+	);
+
+	INSERT INTO emp1 (person_name , street,City) VALUES ('kabir', 'Banani', 'Dhaka');
+	INSERT INTO emp1 (person_name , street,City) VALUES ('Tanvir', 'Newmarket', 'Chittangong');
+	INSERT INTO emp1 (person_name , street,City) VALUES ('Manik', 'Nikunjo', 'Dhaka');
+	INSERT INTO emp1 (person_name , street,City) VALUES ('Audhit', 'Nikunjo', 'Khulna');
+	INSERT INTO emp1 (person_name , City) VALUES ('Rasel','Chittangong');
+
+
+	INSERT INTO emp2 (person_name , company, salary) VALUES ('kabir', 'Beximco', 22000);
+	INSERT INTO emp2 (person_name , company, salary) VALUES ('Tanvir', 'HSBC', 40000);
+	INSERT INTO emp2 (person_name , company, salary) VALUES ('Manik', 'HSBC', 30000);
+	INSERT INTO emp2 (person_name , company, salary) VALUES ('Audhit', 'Beximco', 28000);
+	INSERT INTO emp2 (person_name , company, salary) VALUES ('Rasel', 'DBBL', 36000);
+
+
+	select person_name, street from emp1 where city='Chittangong';
+
+	select person_name from emp1 where city='Dhaka' And street='Nikunjo';
+
+	select person_name from emp1 where not city='Dhaka' or not street='Nikunjo';
+	
+	select * from emp2 where company='HSBC' or company='DBBL';
+
+	select * from emp1 where street is NULL;
+
+	select * from emp2 where salary < 30000 or salary>35000;
+
+	SELECT COMPANY from emp2 GROUP BY company HAVING count(company) = 1;
+
+	select person_name from emp1 where street like 'N%k%';
+
+	select person_name from emp2 where company='Beximco' And salary < 25000 or
+	company='HSBC' and salary > 35000  or company='DBBL' And salary > 35000;
+
+	
+	select * from emp1 where not city='Dhaka' and not city='Khulna';
+
+
+
+
+
+
+
+
